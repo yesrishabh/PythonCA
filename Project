@@ -171,8 +171,8 @@ medalists = [
         "Year": 2016,
         "City": "Rio de Janeiro",
         "Gold": {"Name": "Thomas Röhler", "Country": "Germany"},
-        "Silver": {"Name": "Julian Wruck", "Country": "Australia"},
-        "Bronze": {"Name": "Andreas Thorkildsen", "Country": "Norway"},
+        "Silver": {"Name": "Julius Yego", "Country": "Kenya"},
+        "Bronze": {"Name": "Keshorn Walcott", "Country": "Trinidad and Tobago"},
     },
     {
         "Year": 2020,
@@ -184,17 +184,18 @@ medalists = [
     {
         "Year": 2024,
         "City": "Paris",
-        "Gold": {"Name": "Neeraj Chopra", "Country": "India"},
-        "Silver": {"Name": "Arman Dey", "Country": "USA"},
-        "Bronze": {"Name": "Zhang Wei", "Country": "China"},
-    }
+        "Gold": {"Name": "Arshad Nadeem", "Country": "Pakistan"},
+        "Silver": {"Name": "Neeraj Chopra", "Country": "India"},
+        "Bronze": {"Name": "Anderson Peters", "Country": "Grenada"},
+    },
 ]
 
 # Q1: Who will win the silver medal in 2024?
 silver_2024 = next(medalist['Silver']['Name'] for medalist in medalists if medalist['Year'] == 2024)
-print("Q1: The silver medal winner in 2024 is", silver_2024)
+print("Q1.Silver medal win in 2024:")
+print(silver_2024)
+print("\n")
 
-print("\n")  # Adding space between questions
 
 # Q2: Count the number of times Neeraj Chopra has won a medal
 neeraj_chopra_medals = 0
@@ -202,9 +203,9 @@ for year in medalists:
     for medal_type in ["Gold", "Silver", "Bronze"]:
         if year[medal_type]["Name"] == "Neeraj Chopra":
             neeraj_chopra_medals += 1
-print("Q2: Neeraj Chopra won", neeraj_chopra_medals, "medals.")
-
-print("\n")  # Adding space between questions
+print("Q2.Number of medals Neeraj Chopra win")
+print("Neeraj Chopra won", neeraj_chopra_medals, "medals.")
+print("\n")
 
 # Q3: Count the number of medal winners from India
 india_medalists = 0
@@ -212,9 +213,9 @@ for year in medalists:
     for medal_type in ["Gold", "Silver", "Bronze"]:
         if year[medal_type]["Country"] == "India":
             india_medalists += 1
-print("Q3: India has had", india_medalists, "medal winners.")
-
-print("\n")  # Adding space between questions
+print("Q3.The Number of medals won by india: ")            
+print("India has had", india_medalists, "medal winners.")
+print("\n")
 
 # Q4: Find the year when India won its first medal
 first_medal_year = None
@@ -225,18 +226,19 @@ for year in medalists:
             break
     if first_medal_year:
         break
+print("Q4. In Which Year India won its first medal: ")    
 if first_medal_year:
-    print("Q4: India won its first medal in", first_medal_year)
+    print("India won its first medal in", first_medal_year )
 else:
-    print("Q4: India did not win a medal in the provided data")
+    print("India did not win a medal in the provided data")
+print("\n")
 
-print("\n")  # Adding space between questions
 
 # Q5: How many different countries won gold medals?
 gold_countries = set(medalist['Gold']['Country'] for medalist in medalists)
-print("Q5: Number of different countries that won gold medals:", len(gold_countries))
-
-print("\n")  # Adding space between questions
+print("Q5.Different Countries won gold medal:")
+print(len(gold_countries))
+print("\n")
 
 # Q6: Which country has won the most silver medals in this event?
 silver_medals_by_country = {}
@@ -244,15 +246,15 @@ for year in medalists:
     country = year["Silver"]["Country"]
     silver_medals_by_country[country] = silver_medals_by_country.get(country, 0) + 1
 most_silver_country = max(silver_medals_by_country, key=silver_medals_by_country.get)
-print("Q6: The country with the most silver medals is", most_silver_country)
-
-print("\n")  # Adding space between questions
+print("Q6.Country which won the most silver medals in this event:")
+print(most_silver_country)
+print("\n")
 
 # Q7: How many times has the same country won both gold and silver in the same year?
 same_country_gold_silver = sum(1 for year in medalists if year["Gold"]["Country"] == year["Silver"]["Country"])
-print("Q7: The number of times the same country won both gold and silver in the same year is", same_country_gold_silver)
-
-print("\n")  # Adding space between questions
+print("Q7.How many times has the same country won both gold and silver in the same year:")
+print(same_country_gold_silver)
+print("\n")
 
 # Q8: Which country has the most medalists overall (gold, silver, and bronze combined)?
 country_medals = {}
@@ -261,27 +263,26 @@ for year in medalists:
         country = year[medal]["Country"]
         country_medals[country] = country_medals.get(country, 0) + 1
 most_medals_country = max(country_medals, key=country_medals.get)
-print("Q8: The country with the most medalists overall is", most_medals_country)
-
-print("\n")  # Adding space between questions
+print("Q8.Country has the most medalists overall (gold, silver, and bronze combined):")
+print(most_medals_country)
+print("\n")
 
 # Q9: The names of the players and their countries who won gold, silver, and bronze medals in 2024
 event_2024 = next(medalist for medalist in medalists if medalist['Year'] == 2024)
-print(f"Q9: In 2024:")
-print(f"    Gold: {event_2024['Gold']['Name']} from {event_2024['Gold']['Country']}")
-print(f"    Silver: {event_2024['Silver']['Name']} from {event_2024['Silver']['Country']}")
-print(f"    Bronze: {event_2024['Bronze']['Name']} from {event_2024['Bronze']['Country']}")
-
-print("\n")  # Adding space between questions
+print("Q9.Names of the players and their countries who won gold, silver, and bronze medals in 2024:")
+print(f"Gold: {event_2024['Gold']['Name']} from {event_2024['Gold']['Country']}")
+print(f"Silver: {event_2024['Silver']['Name']} from {event_2024['Silver']['Country']}")
+print(f"Bronze: {event_2024['Bronze']['Name']} from {event_2024['Bronze']['Country']}")
+print("\n")\
 
 # Q10: Print athletes who won medals in more than one year
 from collections import defaultdict
 athlete_medals = defaultdict(set)
+print("Q10.athletes who won medals in more than one year:")
 for medalist in medalists:
     athlete_medals[medalist['Gold']['Name']].add(medalist['Year'])
     athlete_medals[medalist['Silver']['Name']].add(medalist['Year'])
     athlete_medals[medalist['Bronze']['Name']].add(medalist['Year'])
-print("Q10: Athletes who won medals in more than one year:")
 for athlete, years in athlete_medals.items():
     if len(years) > 1:
-        print(f"    {athlete} won medals in the years: {sorted(years)}")
+        print(f"{athlete} won medals in the years: {sorted(years)}")
